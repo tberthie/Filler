@@ -6,7 +6,7 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 13:29:53 by tberthie          #+#    #+#             */
-/*   Updated: 2017/02/22 17:23:21 by tberthie         ###   ########.fr       */
+/*   Updated: 2017/02/27 18:40:53 by tberthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,14 @@ void			parse(t_filler *filler)
 		line = ft_gnl(0);
 		j = 4;
 		while (line[j])
+		{
+			if (filler->pos_y == -1 && line[j] == filler->player)
+				filler->pos_y = (int)i / filler->map_x;
 			filler->map[i++] = line[j++];
+		}
 		free(line);
 	}
 	if (filler->piece)
 		free(filler->piece);
+	piece(filler);
 }

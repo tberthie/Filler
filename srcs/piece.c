@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_piece.c                                      :+:      :+:    :+:   */
+/*   piece.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/22 16:20:16 by tberthie          #+#    #+#             */
-/*   Updated: 2017/02/22 17:50:15 by tberthie         ###   ########.fr       */
+/*   Created: 2017/02/27 18:39:52 by tberthie          #+#    #+#             */
+/*   Updated: 2017/02/28 11:28:38 by tberthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,58 @@
 
 #include <stdlib.h>
 
-static void		clean(t_filler *filler)
+static void		cut_piece(t_filler *filler, int *off_x, int *off_y)
 {
-	int		x;
-	int		y;
+	int			x;
+	int			y;
+	char		*piece;
 
-	filler->off_x = filler->piece_x;
-	y = (int)ft_strlen(filler->piece) / filler->piece_x;
-	filler->off_y = y;
-	while (y--)
+	piece = (char*)ft_m(sizeof(char) * (ft_strlen(filler->piece) + 1));
+	y = off_y[0];
+	while (y <= off_y[1])
 	{
-		x = filler->piece_x;
-		while (x--)
-			if (filler->piece[x + y * filler->piece_x] == '*')
-			{
-				filler->off_x = filler->off_x > x ? x : filler->off_x;
-				filler->off_y = filler->off_y > y ? y : filler->off_y;
-			}
+		x = off_x[0];
+		while (x <= off_x[1])
+		{
+			piece[x - off_x[0] + (y - off_y[0]) * (off_x[1] - off_x[0] + 1)] =
+			filler->piece[x + y * filler->piece_x];
+			x++;
+		}
+		y++;
 	}
+	free(filler->piece);
+	filler->piece = piece;
+	filler->piece_x = off_x[1] - off_x[0] + 1;
+	filler->off[0] = off_x[0];
+	filler->off[1] = off_y[0];
+}
+
+static void		clean_piece(t_filler *filler)
+{
+	int		off_x[2];
+	int		off_y[2];
+	int		i;
+
+	i = 0;
+	while (filler->piece[i] != '*')
+		i++;
+	off_y[0] = i / filler->piece_x;
+	off_y[1] = i / filler->piece_x;
+	off_x[0] = i % filler->piece_x;
+	off_x[1] = i % filler->piece_x;
+	while (filler->piece[i])
+	{
+		if (filler->piece[i] == '*')
+		{
+			off_y[1] = i / filler->piece_x;
+		   	if (i % filler->piece_x < off_x[0])
+				off_x[0] = i % filler->piece_x;
+		   	if (i % filler->piece_x > off_x[1])
+				off_x[1] = i % filler->piece_x;
+		}
+		i++;
+	}
+	cut_piece(filler, off_x, off_y);
 }
 
 void			piece(t_filler *filler)
@@ -62,5 +96,5 @@ void			piece(t_filler *filler)
 			filler->piece[i++] = line[j++];
 		free(line);
 	}
-	clean(filler);
+	clean_piece(filler);
 }
