@@ -6,19 +6,22 @@
 #    By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/20 22:18:00 by tberthie          #+#    #+#              #
-#    Updated: 2017/02/28 11:29:46 by tberthie         ###   ########.fr        #
+#    Updated: 2017/03/07 17:39:22 by tberthie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-OBJS = $(addsuffix .o, $(addprefix objs/, main parse tools fill piece))
+OBJS = $(addsuffix .o, $(addprefix objs/, main parse tools piece lock))
 
 NAME = filler
 
 all: objs $(NAME)
 
 test:
-	./resources/filler_vm -p1 ./filler -p2 ./resources/players/abanlin.filler \
-	-f resources/maps/map01
+	gcc -o visu visu.c
+	./resources/filler_vm -p1 ./filler \
+	-p2 ./resources/players/abanlin.filler \
+	-f resources/maps/map01 | ./visu
+	rm -f visu
 
 objs:
 	mkdir objs

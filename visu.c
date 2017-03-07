@@ -1,39 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   filler.h                                           :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/21 13:11:50 by tberthie          #+#    #+#             */
-/*   Updated: 2017/03/07 17:27:39 by tberthie         ###   ########.fr       */
+/*   Created: 2017/03/07 17:31:58 by tberthie          #+#    #+#             */
+/*   Updated: 2017/03/07 17:35:52 by tberthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLER_H
-# define FILLER_H
+#include "unistd.h"
 
-typedef struct		s_filler
+int			main(void)
 {
-	char	player;
-	char	pad[3];
+	char	c;
 
-	int		pos_y;
-
-	char	*map;
-	char	*piece;
-
-	int		map_x;
-	int		piece_x;
-
-	int		off[2];
-}					t_filler;
-
-void				parse(t_filler *filler);
-char				fits(int x, int y, t_filler *filler);
-void				piece(t_filler *filler);
-
-char				locked(t_filler *filler);
-void				lock(t_filler *filler, char dir);
-
-#endif
+	while (read(0, &c, 1) > 0)
+	{
+		if (c == 'O')
+			write(1, "\x1b[31m",6);
+		else if (c == 'X')
+			write(1, "\x1b[34m", 6);
+		write(1, &c, 1);
+		if (c == 'O' || c == 'X')
+			write(1, "\x1b[0m",5);
+	}
+	return (0);
+}

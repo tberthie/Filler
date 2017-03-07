@@ -6,7 +6,7 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 13:11:27 by tberthie          #+#    #+#             */
-/*   Updated: 2017/02/26 15:46:32 by tberthie         ###   ########.fr       */
+/*   Updated: 2017/03/07 17:26:23 by tberthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ int				main(void)
 {
 	t_filler	filler;
 	char		c;
+	char		dir;
 
+	dir = 0;
 	filler.pos_y = -1;
 	filler.map = 0;
 	filler.piece = 0;
@@ -29,7 +31,8 @@ int				main(void)
 	while (read(0, &c, 1))
 	{
 		parse(&filler);
-		fill(&filler);
+		lock(&filler, locked(&filler) ? dir : 0);
+		dir = dir ? 0 : 1;
 	}
 	return (0);
 }

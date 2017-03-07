@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   insert.c                                           :+:      :+:    :+:   */
+/*   lock.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/26 15:46:43 by tberthie          #+#    #+#             */
-/*   Updated: 2017/02/28 11:25:56 by tberthie         ###   ########.fr       */
+/*   Created: 2017/03/07 17:21:51 by tberthie          #+#    #+#             */
+/*   Updated: 2017/03/07 17:28:21 by tberthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 
 static char		check(t_filler *filler, int *x, int *y)
 {
-	if (x[0] <= filler->map_x - filler->piece_x && y[0] <=
+	if (x[0] < filler->map_x - filler->piece_x && y[0] <
 	(int)ft_strlen(filler->map) / filler->map_x - (int)ft_strlen(filler->piece)
 	/ filler->piece_x && fits(x[0], y[0], filler))
 		ft_printf(1, "%d %d\n", y[0] - filler->off[1], x[0] - filler->off[0]);
-	else if (x[0] <= filler->map_x - filler->piece_x && y[1] >= 0
+	else if (x[0] < filler->map_x - filler->piece_x && y[1] >= 0
 	&& fits(x[0], y[1], filler))
 		ft_printf(1, "%d %d\n", y[1] - filler->off[1], x[0] - filler->off[0]);
-	else if (x[1] >= 0 && y[0] <= (int)ft_strlen(filler->map) / filler->map_x -
+	else if (x[1] >= 0 && y[0] < (int)ft_strlen(filler->map) / filler->map_x -
 	(int)ft_strlen(filler->piece) / filler->piece_x && fits(x[1], y[0], filler))
 		ft_printf(1, "%d %d\n", y[0] - filler->off[1], x[1] - filler->off[0]);
 	else if (x[1] >= 0 && y[1] >= 0 && fits(x[1], y[1], filler))
@@ -83,9 +83,9 @@ static void		lock_horizontal(t_filler *filler)
 	ft_putstr("0 0\n");
 }
 
-void			fill(t_filler *filler)
+void			lock(t_filler *filler, char dir)
 {
-	if ((int)ft_strlen(filler->map) / filler->map_x > filler->map_x)
+	if (dir)
 		lock_horizontal(filler);
 	else
 		lock_vertical(filler);
