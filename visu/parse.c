@@ -6,11 +6,11 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 13:29:53 by tberthie          #+#    #+#             */
-/*   Updated: 2017/03/08 13:39:54 by tberthie         ###   ########.fr       */
+/*   Updated: 2017/03/08 17:16:11 by tberthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "visu.h"
 
 #include "libft.h"
 
@@ -33,6 +33,7 @@ static void		create_map(t_filler *filler)
 	char			**split;
 	unsigned int	i;
 
+	skip(9);
 	line = ft_gnl(0);
 	split = ft_strsplit(line, ' ');
 	free(line);
@@ -42,34 +43,42 @@ static void		create_map(t_filler *filler)
 	--i;
 	while (i--)
 		filler->map[i] = '.';
+	filler->dim[0] = 920.0 / filler->map_x;
+	filler->dim[1] = 920.0 / (ft_strlen(filler->map) / filler->map_x);
 	ft_parrfree((void**)split);
 	skip(1);
 }
 
-static void		parse_player(t_filler *filler)
+static char		allign_read(t_filler *filler)
 {
 	char		*line;
-	char		**split;
 
-	line = ft_gnl(0);
-	split = ft_strsplit(line, ' ');
-	free(line);
-	if (!ft_strcmp(split[2], "p1"))
-		filler->player = 'O';
+	if (!filler->map)
+		create_map(filler);
 	else
-		filler->player = 'X';
-	ft_parrfree((void**)split);
+	{
+		while ((line = ft_gnl(0)) && ft_strncmp(line, "Plateau", 7))
+			free(line);
+		if (line)
+		{
+			free(line);
+			skip(1);
+			return (1);
+		}
+		else
+			return (0);
+	}
+	return (1);
 }
 
-void			parse(t_filler *filler)
+char			parse(t_filler *filler)
 {
 	char			*line;
 	unsigned int	i;
 	unsigned int	j;
 
-	if (!filler->player)
-		parse_player(filler);
-	!filler->map ? create_map(filler) : skip(2);
+	if (!allign_read(filler))
+		return (0);
 	i = 0;
 	while (i < ft_strlen(filler->map))
 	{
@@ -86,4 +95,5 @@ void			parse(t_filler *filler)
 	if (filler->piece)
 		free(filler->piece);
 	piece(filler);
+	return (1);
 }
