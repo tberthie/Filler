@@ -6,7 +6,7 @@
 #    By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/20 22:18:00 by tberthie          #+#    #+#              #
-#    Updated: 2017/03/08 17:20:25 by tberthie         ###   ########.fr        #
+#    Updated: 2017/03/08 17:21:37 by tberthie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ VISU = visual
 
 all: objs $(VISU) $(NAME)
 
-test:
+test: all
 	./resources/filler_vm -p1 ./filler \
 	-p2 ./resources/players/superjeannot.filler \
 	-f resources/maps/map01 | ./$(VISU) ; cat filler.trace
