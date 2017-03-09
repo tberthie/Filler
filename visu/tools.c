@@ -6,7 +6,7 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 16:10:08 by tberthie          #+#    #+#             */
-/*   Updated: 2017/03/08 17:13:07 by tberthie         ###   ########.fr       */
+/*   Updated: 2017/03/09 14:44:33 by tberthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,17 @@
 
 void				draw_rect(t_filler *filler, int x, int y)
 {
-	int		i;
+	int			i;
+	int			px;
+	int			py;
 
 	i = 0;
+	px = (int)(x * filler->dim[0]) + 40;
+	py = (int)(y * filler->dim[1]) + 240;
 	while (i < filler->dim[1])
 	{
-		SDL_RenderDrawLine(filler->ren, (int)(x * filler->dim[0]) + 40,
-		(int)(y * filler->dim[1]) + i + 240, (int)((x + 1) * filler->dim[0])
-		+ 40, (int)(y * filler->dim[1]) + i + 240);
+		SDL_RenderDrawLine(filler->ren, px, py + i, px
+		+ filler->dim[0], py + i);
 		i++;
 	}
 }

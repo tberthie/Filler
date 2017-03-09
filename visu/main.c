@@ -6,7 +6,7 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 13:11:27 by tberthie          #+#    #+#             */
-/*   Updated: 2017/03/08 17:01:28 by tberthie         ###   ########.fr       */
+/*   Updated: 2017/03/09 14:29:25 by tberthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ int				main(void)
 				break ;
 			display(&filler);
 			SDL_PollEvent(&ev) ? event(ev, &filler) : 0;
-			SDL_Delay(10);
 		}
 		scoreboard(&filler);
 	}
