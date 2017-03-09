@@ -6,13 +6,12 @@
 #    By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/20 22:18:00 by tberthie          #+#    #+#              #
-#    Updated: 2017/03/09 14:45:30 by tberthie         ###   ########.fr        #
+#    Updated: 2017/03/09 14:46:46 by tberthie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-OBJS = $(addsuffix .o, $(addprefix objs/filler/, main parse tools piece lock))
-OVIS = $(addsuffix .o, $(addprefix objs/visu/, main parse piece display score\
-	   tools))
+OBJS = $(addsuffix .o, $(addprefix objs/filler/, main parse piece target attack))
+OVIS = $(addsuffix .o, $(addprefix objs/visu/, main parse piece display score tools))
 
 NAME = filler
 VISU = visual
