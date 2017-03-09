@@ -6,7 +6,7 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 13:11:27 by tberthie          #+#    #+#             */
-/*   Updated: 2017/03/08 16:24:37 by tberthie         ###   ########.fr       */
+/*   Updated: 2017/03/09 14:58:46 by tberthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,16 @@ int				main(void)
 {
 	t_filler	filler;
 	char		c;
-	char		dir;
 
-	dir = 0;
-	filler.pos_y = -1;
 	filler.map = 0;
 	filler.piece = 0;
 	filler.player = 0;
 	while (read(0, &c, 1))
 	{
 		parse(&filler);
-		lock(&filler, locked(&filler) ? dir : 0);
-		dir = dir ? 0 : 1;
+		ft_printf(2, "MAP %d %d\n", filler.map_x, filler.map_y);
+		ft_printf(2, "PIE %d %d\n", filler.piece_x, filler.piece_y);
+		fill(&filler);
 	}
 	return (0);
 }

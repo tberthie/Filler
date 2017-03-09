@@ -6,7 +6,7 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/27 18:39:52 by tberthie          #+#    #+#             */
-/*   Updated: 2017/03/08 13:53:34 by tberthie         ###   ########.fr       */
+/*   Updated: 2017/03/09 14:57:43 by tberthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static void		cut_piece(t_filler *filler, int *off_x, int *off_y)
 	free(filler->piece);
 	filler->piece = piece;
 	filler->piece_x = off_x[1] - off_x[0] + 1;
+	filler->piece_y = off_y[1] - off_y[0] + 1;
 	filler->off[0] = off_x[0];
 	filler->off[1] = off_y[0];
 }

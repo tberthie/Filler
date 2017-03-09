@@ -6,7 +6,7 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 13:11:27 by tberthie          #+#    #+#             */
-/*   Updated: 2017/03/09 14:29:25 by tberthie         ###   ########.fr       */
+/*   Updated: 2017/03/09 15:03:54 by tberthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int				main(void)
 	if (init(&filler))
 	{
 		filler.map = 0;
-		filler.piece = 0;
 		filler.player = 0;
 		while (filler.run && read(0, &c, 1))
 		{

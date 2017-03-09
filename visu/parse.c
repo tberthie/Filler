@@ -6,7 +6,7 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 13:29:53 by tberthie          #+#    #+#             */
-/*   Updated: 2017/03/09 13:10:46 by tberthie         ###   ########.fr       */
+/*   Updated: 2017/03/09 15:04:47 by tberthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,24 @@ static char		allign_read(t_filler *filler)
 	return (1);
 }
 
+static void		piece(t_filler *filler)
+{
+	char	*line;
+	char	**split;
+	int		i;
+
+	line = ft_gnl(0);
+	split = ft_strsplit(line, ' ');
+	free(line);
+	i = ft_atoi(split[2]);
+	ft_parrfree((void**)split);
+	while (i--)
+	{
+		line = ft_gnl(0);
+		free(line);
+	}
+}
+
 char			parse(t_filler *filler)
 {
 	char			*line;
@@ -85,15 +103,9 @@ char			parse(t_filler *filler)
 		line = ft_gnl(0);
 		j = 4;
 		while (line[j])
-		{
-			if (filler->pos_y == -1 && line[j] == filler->player)
-				filler->pos_y = (int)i / filler->map_x;
 			filler->map[i++] = line[j++];
-		}
 		free(line);
 	}
-	if (filler->piece)
-		free(filler->piece);
 	piece(filler);
 	return (1);
 }

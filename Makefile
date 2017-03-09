@@ -6,12 +6,12 @@
 #    By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/20 22:18:00 by tberthie          #+#    #+#              #
-#    Updated: 2017/03/09 14:46:46 by tberthie         ###   ########.fr        #
+#    Updated: 2017/03/09 15:05:25 by tberthie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-OBJS = $(addsuffix .o, $(addprefix objs/filler/, main parse piece target attack))
-OVIS = $(addsuffix .o, $(addprefix objs/visu/, main parse piece display score tools))
+OBJS = $(addsuffix .o, $(addprefix objs/filler/, main parse piece fill))
+OVIS = $(addsuffix .o, $(addprefix objs/visu/, main parse display score tools))
 
 NAME = filler
 VISU = visual
@@ -20,8 +20,9 @@ all: objs $(VISU) $(NAME)
 
 test: all
 	./resources/filler_vm -p1 ./filler \
-	-p2 ./resources/players/superjeannot.filler \
-	-f resources/maps/map01 | ./$(VISU) ; cat filler.trace
+	-p2 ./resources/players/carli.filler \
+	-f resources/maps/map01 | ./$(VISU) ; \
+	cat filler.trace ; rm -f filler.trace
 
 objs:
 	mkdir objs

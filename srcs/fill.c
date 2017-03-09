@@ -1,39 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   filler.h                                           :+:      :+:    :+:   */
+/*   fill.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/21 13:11:50 by tberthie          #+#    #+#             */
-/*   Updated: 2017/03/09 14:59:30 by tberthie         ###   ########.fr       */
+/*   Created: 2017/03/09 14:51:58 by tberthie          #+#    #+#             */
+/*   Updated: 2017/03/09 14:56:39 by tberthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLER_H
-# define FILLER_H
+#include "filler.h"
 
-typedef struct		s_filler
+#include "libft.h"
+
+void			fill(t_filler *filler)
 {
-	char	*map;
-	char	*piece;
-
-	int		map_x;
-	int		map_y;
-
-	int		piece_x;
-	int		piece_y;
-
-	int		off[2];
-
-	char	player;
-
-	char	pad[7];
-}					t_filler;
-
-void				parse(t_filler *filler);
-void				piece(t_filler *filler);
-
-void				fill(t_filler *filler);
-
-#endif
+	
+	ft_printf(1, "0 0\n");
+}
