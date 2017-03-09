@@ -6,7 +6,7 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 14:51:58 by tberthie          #+#    #+#             */
-/*   Updated: 2017/03/09 15:35:39 by tberthie         ###   ########.fr       */
+/*   Updated: 2017/03/09 15:53:14 by tberthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #include "libft.h"
 
-void			fill(t_filler *filler)
+char			random(t_filler *filler)
 {
 	int		y;
 	int		x;
@@ -26,8 +26,19 @@ void			fill(t_filler *filler)
 		while (x--)
 		{
 			if (insert(filler, x, y))
-				return ;
+				return (1);
 		}
 	}
-	ft_printf(1, "0 0\n");
+	return (0);
+}
+
+void			fill(t_filler *filler)
+{
+	char		status;
+
+	/**/
+	status = random(filler);
+	/**/
+	if (!status)
+		ft_printf(1, "0 0\n");
 }
