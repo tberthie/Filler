@@ -6,7 +6,7 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 13:29:53 by tberthie          #+#    #+#             */
-/*   Updated: 2017/03/09 15:04:47 by tberthie         ###   ########.fr       */
+/*   Updated: 2017/03/09 15:06:31 by tberthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static char		allign_read(t_filler *filler)
 	return (1);
 }
 
-static void		piece(t_filler *filler)
+static void		piece(void)
 {
 	char	*line;
 	char	**split;
@@ -106,6 +106,6 @@ char			parse(t_filler *filler)
 			filler->map[i++] = line[j++];
 		free(line);
 	}
-	piece(filler);
+	piece();
 	return (1);
 }
