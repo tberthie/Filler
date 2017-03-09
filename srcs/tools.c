@@ -6,7 +6,7 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 15:09:45 by tberthie          #+#    #+#             */
-/*   Updated: 2017/03/09 15:27:54 by tberthie         ###   ########.fr       */
+/*   Updated: 2017/03/09 15:38:30 by tberthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,10 @@ char			insert(t_filler *filler, int x, int y)
 	int		py;
 
 	count = 0;
-	if (x + filler->piece_x > filler->map_x
-	|| y + filler->piece_y > filler->map_y)
-		return (0);
-	py = filler->piece_y;
+	py = y + filler->piece_y <= filler->map_y ? filler->piece_y : 0;
 	while (py--)
 	{
-		px = filler->piece_x;
+		px = x + filler->piece_x <= filler->map_x ? filler->piece_x : 0;
 		while (px--)
 		{
 			if (filler->piece[px + py * filler->piece_x] == '.')
