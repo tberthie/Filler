@@ -20,9 +20,8 @@ void			scoreboard(t_filler *filler)
 	SDL_Texture	*tx;
 	SDL_Rect	rc;
 
-	SDL_SetTextureColorMod((tx = get_text(filler, filler->score_o >
-	filler->score_x ? "RED WON" : "BLUE WON")), 255, 255, 255);
-	rc = get_rect(300, 650, 400, 100);
+	SDL_SetTextureColorMod((tx = get_text(filler, "GAME OVER")), 255, 255, 255);
+	rc = get_rect(300, 660, 400, 80);
 	SDL_RenderCopy(filler->ren, tx, NULL, &rc);
 	SDL_DestroyTexture(tx);
 	SDL_RenderPresent(filler->ren);
