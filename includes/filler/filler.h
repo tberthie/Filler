@@ -6,7 +6,7 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 13:11:50 by tberthie          #+#    #+#             */
-/*   Updated: 2017/03/09 14:59:30 by tberthie         ###   ########.fr       */
+/*   Updated: 2017/03/09 15:17:09 by tberthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,7 @@ void				parse(t_filler *filler);
 void				piece(t_filler *filler);
 
 void				fill(t_filler *filler);
+
+char				insert(t_filler *filler, int x, int y);
 
 #endif

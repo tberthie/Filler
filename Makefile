@@ -6,11 +6,11 @@
 #    By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/20 22:18:00 by tberthie          #+#    #+#              #
-#    Updated: 2017/03/09 15:05:25 by tberthie         ###   ########.fr        #
+#    Updated: 2017/03/09 15:35:52 by tberthie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-OBJS = $(addsuffix .o, $(addprefix objs/filler/, main parse piece fill))
+OBJS = $(addsuffix .o, $(addprefix objs/filler/, main parse piece fill tools))
 OVIS = $(addsuffix .o, $(addprefix objs/visu/, main parse display score tools))
 
 NAME = filler
