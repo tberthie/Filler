@@ -19,7 +19,7 @@ VISU = visual
 
 all: objs $(VISU) $(NAME)
 
-test: all
+run: all
 	./resources/filler_vm -p1 ./filler \
 	-p2 ./resources/players/superjeannot.filler \
 	-f resources/maps/map01 | ./$(VISU) ; cat filler.trace
