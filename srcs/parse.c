@@ -6,7 +6,7 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 13:29:53 by tberthie          #+#    #+#             */
-/*   Updated: 2017/03/09 15:32:09 by tberthie         ###   ########.fr       */
+/*   Updated: 2017/03/09 17:47:04 by tberthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,22 @@ static void		skip(int nb)
 		line = ft_gnl(0);
 		free(line);
 	}
+}
+
+static void		close_targets(t_filler *filler)
+{
+	int		x;
+	int		y;
+
+	x = 0;
+	while (filler->map[x] != filler->player)
+		x++;
+	y = (x / filler->map_x < filler->map_y / 2);
+	x = (x % filler->map_x < filler->map_x / 2);
+	filler->target[0] = y && x ? 0 : 1;
+	filler->target[2] = y && !x ? 0 : 1;
+	filler->target[5] = !y && x ? 0 : 1;
+	filler->target[7] = !y && !x ? 0 : 1;
 }
 
 static void		create_map(t_filler *filler)
@@ -67,9 +83,11 @@ void			parse(t_filler *filler)
 	char			*line;
 	unsigned int	i;
 	unsigned int	j;
+	char			setup;
 
 	if (!filler->player)
 		parse_player(filler);
+	setup = !filler->map;
 	!filler->map ? create_map(filler) : skip(2);
 	i = 0;
 	while (i < ft_strlen(filler->map))
@@ -80,6 +98,8 @@ void			parse(t_filler *filler)
 			filler->map[i++] = line[j++];
 		free(line);
 	}
+	if (setup)
+		close_targets(filler);
 	if (filler->piece)
 		free(filler->piece);
 	piece(filler);
