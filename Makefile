@@ -6,20 +6,20 @@
 #    By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/20 22:18:00 by tberthie          #+#    #+#              #
-#    Updated: 2017/03/09 18:18:04 by tberthie         ###   ########.fr        #
+#    Updated: 2017/03/10 13:06:44 by tberthie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 OBJS = $(addsuffix .o, $(addprefix objs/filler/, main parse piece fill targets))
 OVIS = $(addsuffix .o, $(addprefix objs/visu/, main parse display score tools))
 
-NAME = filler
+NAME = tberthie.filler
 VISU = visual
 
 all: objs $(VISU) $(NAME)
 
 test: all
-	./resources/filler_vm -p1 ./filler \
+	./resources/filler_vm -p1 ./$(NAME) \
 	-p2 ./resources/players/carli.filler \
 	-f resources/maps/map02 | ./$(VISU) ; echo "\x1b[32m" ; \
 	cat filler.trace ; echo "\x1b[0m" ; rm -f filler.trace
