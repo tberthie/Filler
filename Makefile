@@ -6,7 +6,7 @@
 #    By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/20 22:18:00 by tberthie          #+#    #+#              #
-#    Updated: 2017/03/10 13:06:44 by tberthie         ###   ########.fr        #
+#    Updated: 2017/03/10 16:28:43 by tberthie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ all: objs $(VISU) $(NAME)
 
 test: all
 	./resources/filler_vm -p1 ./$(NAME) \
-	-p2 ./resources/players/carli.filler \
+	-p2 ./gthomas.filler \
 	-f resources/maps/map02 | ./$(VISU) ; echo "\x1b[32m" ; \
 	cat filler.trace ; echo "\x1b[0m" ; rm -f filler.trace
 
